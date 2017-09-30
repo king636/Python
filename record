@@ -1,0 +1,60 @@
+安装python
+(终端输入python查看发现系统已经安装了python 2.7.6,先不管.
+输入python3发现已经安装了python 3.4.0,也先不管，教程需要3.5版本，目前官网最新为3.6.2,继续安装3.6.2版本)
+
+1. 下载Python-3.6.2.tgz,并提取(/home/nick/work/Python-3.6.2)
+2. cd Python-3.6.2,编译安装: 
+./configure
+make
+sudo make install
+
+虽然报错：zipimport.ZipImportError: can't decompress data; zlib not available
+make: *** [install] 错误 1
+
+但是运行：python3.6
+安装成功，进入开发环境．
+如何配置当输入python3(以及python)的时候进入的是3.6.2而不是系统的3.4?
+cd /usr/bin
+可看到
+python   python2.7  python3.4   python3m
+python2  python3    python3.4m  python-mkdebian
+
+没有python3.6相关（事实上在/usr/local/bin下）
+
+rm python
+ln -s /usr/local/bin/python3.6m python
+
+运行python,进入3.6.2开发环境，ok!
+同理，将python3也改为进入3.6.2环境，ok!
+
+注意：配置到系统的path中（之后开发环境比较vsc配置python的时候需要）．不配置也可以，vsc中配置tasks.json可以运行python，具体看后面
+
+终端运行python3进入python开发环境
+>>>100+200
+输出：(和nodejs是一样的^^)
+300
+
+>>>print('hello,world') --单引或者双引都可以
+
+退出：exit()
+
+命令行执行: python hello.py
+
+hello.py:
+print(100+200) --这样执行和python开发环境中执行结果才一样
+
+Ubuntu中让py文件像exe文件一样执行：
+#!/usr/bin/env python3
+print('hello,world')
+
+权限：$chmod a+x hello.py
+
+使用python代码运行助手：
+下载learning.py(/home/nick/work/Python/learning.py)
+python learning.py
+运行成功,在网站上输入代码后：
+代码被发送到本机正在运行的Python代码运行助手
+Python代码运行助手将代码保存为临时文件，然后调用Python解释器执行代码
+
+目前由于网站升级，暂不支持代码助手（后续请研究下python代码运行助手是如何实现的，在自己网站上实现一下！！！！）
+使用eclipse + pyDev来搭建开发环境：
